@@ -13,8 +13,7 @@ jobs:
       - name: Run Trivy vulnerability scanner in IaC mode
         uses: aquasecurity/trivy-action@master
         with:
-          scan-type: 'fs'
-          security-checks: 'vuln,config,secret'
+          image-ref: 'gcr.io/ml-pipeline/cache-deployer:1.8.5'
           hide-progress: false
           format: 'sarif'
           output: 'trivy-results.sarif'
@@ -22,3 +21,7 @@ jobs:
           AQUA_KEY: ${{ secrets.AQUA_KEY }}
           AQUA_SECRET: ${{ secrets.AQUA_SECRET }}
           TRIVY_RUN_AS_PLUGIN: 'aqua'
+      - name: Upload Trivy scan results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: 'trivy-results.sarif'
