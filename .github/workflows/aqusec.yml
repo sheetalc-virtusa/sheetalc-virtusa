@@ -15,7 +15,7 @@ jobs:
       - name: Run Trivy vulnerability scanner in docker mode
         uses: aquasecurity/trivy-action@master
         with:
-          image-ref: 'gcr.io/ml-pipeline/cache-deployer:1.8.5'
+          image-ref: ${{ matrix.image }}
           format: 'sarif'
           template: 'sarif'
           output: 'trivy-results-docker.sarif'
