@@ -14,15 +14,15 @@ jobs:
         with:
           image-ref: 'gcr.io/ml-pipeline/cache-deployer:1.8.5'
           format: 'template'
-          template: '@/contrib/sarif.tpl'
+          template: 'sarif'
           output: 'trivy-results-docker.sarif'
           severity: 'CRITICAL'
           timeout: '30m'
       - name: Upload Trivy scan results to GitHub Security tab
-        uses: github/codeql-action/upload-sarif@v1
+        uses: github/codeql-action/upload-sarif@v2
         with:
           sarif_file: 'trivy-results-docker.sarif'
       - name: DEBUG Upload Trivy scan results to GitHub Security tab
-        uses: github/codeql-action/upload-sarif@v1
+        uses: github/codeql-action/upload-sarif@v2
         with:
           sarif_file: 'debug-trivy-results.sarif'
