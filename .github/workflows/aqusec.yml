@@ -29,7 +29,7 @@ jobs:
     needs: Image-list
     strategy:
       matrix:
-        image: ${{needs.Image-list.outputs.image_list}}
+        image: fromJson ( ${{needs.Image-list.outputs.image_list}} )
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
