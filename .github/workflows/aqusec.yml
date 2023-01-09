@@ -16,10 +16,10 @@ jobs:
         id: run_script
         run: |
           mkdir script_v1
-          cd script_v1
           pwd
           ls -la
           ls ${{ github.workspace }}
+          cd script_v1
           curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
           ./kustomize build ${{ github.workspace }}/repo/kustomize_template > manifest.yaml
           python3 ${{ github.workspace }}/repo/scripts/fetch_images.py
