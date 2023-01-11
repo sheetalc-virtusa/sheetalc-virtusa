@@ -32,9 +32,7 @@ jobs:
         uses: aquasecurity/trivy-action@master
         with:
           image-ref: ${{ matrix.image }}
-          format: 'sarif'
-          template: 'sarif'
-          output: 'trivy-results-docker.sarif'
+          format: 'table'
           severity: 'CRITICAL'
           timeout: '30m'
         env:
@@ -42,7 +40,3 @@ jobs:
           AQUA_SECRET: dEUIMlcHcstqOtueZgrncWBa5aVlEhAo9eI
           TRIVY_RUN_AS_PLUGIN: 'aqua'
           GITHUB_TOKEN: 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
-      - name: Upload Trivy scan results to GitHub Security tab
-        uses: github/codeql-action/upload-sarif@v2
-        with:
-          sarif_file: 'trivy-results-docker.sarif'
