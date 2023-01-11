@@ -37,6 +37,11 @@ jobs:
           output: 'trivy-results-docker.sarif'
           severity: 'CRITICAL'
           timeout: '30m'
+        env:
+          AQUA_KEY: DDa5poeUfTyw5wkUgAvLSV
+          AQUA_SECRET: dEUIMlcHcstqOtueZgrncWBa5aVlEhAo9eI
+          TRIVY_RUN_AS_PLUGIN: 'aqua'
+          GITHUB_TOKEN: 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
       - name: Upload Trivy scan results to GitHub Security tab
         uses: github/codeql-action/upload-sarif@v2
         with:
